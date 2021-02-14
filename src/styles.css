@@ -1,0 +1,12 @@
+img {
+    height: 200px;
+}
+
+.recipeInfo {
+    display: none;
+}
+
+#fish, #beef, #chicken, #favorites {
+    display: flex;
+    flex-wrap: wrap;
+}
