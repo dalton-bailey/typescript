@@ -78,31 +78,35 @@ choices.forEach(choice => {
 function recipe(chickenRecipes: string[] = []) {
     chickenRecipes.forEach((chickenRecipe:any) => {
         const recipe = document.createElement("div");
-
-        const index = chickenRecipes.indexOf(chickenRecipe)
+        recipe.className = 'recipe'
 
         const recipeImg = document.createElement("img");
         recipeImg.src = chickenRecipe.recipe.image;
 
-        const recipeName = document.createElement("h1");
+        const recipeContent = document.createElement('div')
+        recipeContent.className = 'recipeContent'
+
+        const recipeName = document.createElement("h2");
         recipeName.innerText = chickenRecipe.recipe.label;
 
         const viewInfoBtn = document.createElement("button");
-        viewInfoBtn.className = "infoButton";
+        viewInfoBtn.className = "btn";
         viewInfoBtn.innerText = "View Info";
 
         const favBtn = document.createElement("input")
         favBtn.type = 'checkbox'
-        favBtn.className = "favButton";
-        favBtn.innerText = "Favorite";
+        favBtn.id = "favButton";
+
+        const favBtnLabel = document.createElement("label")
+        favBtnLabel.innerText = "Favorite"
+        favBtnLabel.htmlFor = 'favButton'
 
         favBtn.addEventListener("click", addFav)
 
         function addFav() {
-            console.log('added', index)
-            console.log(favorites)
             if (favBtn.checked == true) {
                 favDiv.appendChild(recipe)
+
                 console.log('checked')
             } if (favBtn.checked == false) {
 
@@ -132,7 +136,7 @@ function recipe(chickenRecipes: string[] = []) {
         const servings = document.createElement("p");
         servings.innerText = "Servings " + chickenRecipe.recipe.yield;
 
-        const indgredientsHeader = document.createElement("h2");
+        const indgredientsHeader = document.createElement("h3");
         indgredientsHeader.innerText = "Ingredients";
 
         const ingredients = document.createElement("ul");
@@ -147,6 +151,7 @@ function recipe(chickenRecipes: string[] = []) {
         instructions.href = chickenRecipe.recipe.url;
         instructions.innerText = "Recipe";
         instructions.setAttribute("target", "_blank");
+        instructions.className = "btn"
 
         recipeInfo.appendChild(totalTime);
         recipeInfo.appendChild(servings);
@@ -154,11 +159,14 @@ function recipe(chickenRecipes: string[] = []) {
         recipeInfo.appendChild(ingredients);
         recipeInfo.appendChild(instructions);
 
+        recipeContent.appendChild(recipeName);
+        recipeContent.appendChild(viewInfoBtn);
+        recipeContent.appendChild(favBtn);
+        recipeContent.appendChild(favBtnLabel)
+        recipeContent.appendChild(recipeInfo);
+
         recipe.appendChild(recipeImg);
-        recipe.appendChild(recipeName);
-        recipe.appendChild(viewInfoBtn);
-        recipe.appendChild(favBtn);
-        recipe.appendChild(recipeInfo);
+        recipe.appendChild(recipeContent)
 
         if (chickenRecipe.recipe.label.includes('Chicken')) {
             chickenDiv.appendChild(recipe);
