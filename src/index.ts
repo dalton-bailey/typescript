@@ -56,10 +56,9 @@ type UsersPromise = Promise<User[]>
 async function getapi(url: string): Promise<User[]> {
     const response = await fetch(url, {
         method: "GET",
-        // headers: {
-        //     "x-rapidapi-key": `${process.env.API_KEY}`,
-        //     "x-rapidapi-host": "edamam-recipe-search.p.rapidapi.com",
-        // },
+        headers: {
+            mode: 'no-cors'
+        },
     });
 
     let recipes = await response.json();
