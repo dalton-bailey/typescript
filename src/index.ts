@@ -1,6 +1,7 @@
 import * as _ from 'lodash'
 import './styles.css'
 
+
 document.querySelector("#chickenBtn").addEventListener('click' , setChicken) 
 document.querySelector("#beefBtn").addEventListener('click', setBeef);
 document.querySelector("#fishBtn").addEventListener('click', setFish);
@@ -55,10 +56,10 @@ type UsersPromise = Promise<User[]>
 async function getapi(url: string): Promise<User[]> {
     const response = await fetch(url, {
         method: "GET",
-        headers: {
-            "x-rapidapi-key": `${process.env.API_KEY}`,
-            "x-rapidapi-host": "edamam-recipe-search.p.rapidapi.com",
-        },
+        // headers: {
+        //     "x-rapidapi-key": `${process.env.API_KEY}`,
+        //     "x-rapidapi-host": "edamam-recipe-search.p.rapidapi.com",
+        // },
     });
 
     let recipes = await response.json();
@@ -71,8 +72,9 @@ async function getapi(url: string): Promise<User[]> {
 }
 
 choices.forEach(choice => {
-    getapi(`https://edamam-recipe-search.p.rapidapi.com/search?q=${choice}`);
+    getapi(`https://api.edamam.com/search?q=${choice}&app_id=69aa001a&app_key=f820301799922f1a60bd12e0c678b1f9`);
 })
+
  
 
 function recipe(chickenRecipes: string[] = []) {
