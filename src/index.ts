@@ -56,7 +56,7 @@ async function getapi(url: string): Promise<User[]> {
     const response = await fetch(url, {
         method: "GET",
         headers: {
-            "x-rapidapi-key": "69b1e63df0msh1e193782366dff1p1021f6jsneef29c1d0021",
+            "x-rapidapi-key": `${process.env.API_KEY}`,
             "x-rapidapi-host": "edamam-recipe-search.p.rapidapi.com",
         },
     });
